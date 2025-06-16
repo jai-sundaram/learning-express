@@ -2,6 +2,10 @@
 const express = require('express');
 //create an application
 const app = express();
+
+//tell the app to use the ejs view engine
+app.set('view engine', 'ejs')
+
 //were going to make it listen on port 3000
 app.listen(3003)
 
@@ -27,7 +31,10 @@ app.get('/', (req, res) => {
         res.json({message: "Error"})
         //can also send in a file we want a file to download
         //inside the function put to the path to the file
-        res.download("server.js")
+        // res.download("server.js")
+
+        //we could also render an html page/file
+        res.render('index')
 
     }
 
