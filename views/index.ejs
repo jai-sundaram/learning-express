@@ -5,9 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello </title>
+    <!--We can acess the information from the server in the view -->
+    <!--use the special tags to acess that information -->    <!--adding the 'locals.' will allow us to acess whatever is passed into the second parameter-->
+    <!--can also provide a default value here -->
+
+    <title> </title>
 </head>
 <body>
-
+Hello <%= locals.myText || "nothin"%>
 </body>
 </html>
