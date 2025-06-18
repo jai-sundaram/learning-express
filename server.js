@@ -2,7 +2,9 @@
 const express = require('express');
 //create an application
 const app = express();
-
+// if we want the middleware to be used everywhere, we use it at the top
+//so it is middleware for each particular route/function, so before each route functionality begin returned, the logger function which is the middleware will be executed 
+//app.use(logger)
 //tell the app to use the ejs view engine
 app.set('view engine', 'ejs')
 
@@ -16,7 +18,9 @@ app.listen(3003)
 //first parameter will be the path
 //second parameter will be a function that takes 2 different parameters
 //first paramter of the function is the request, second parameter is the response
-app.get('/', (req, res) => {
+//if we want a particular middleware, this case a logger, to be used only for a certain function/route, we pass it in after the url
+//we can have any amounts of middleware
+app.get('/', logger, logger, logger, (req, res) => {
     //this code below will be eexecuted
     console.log("hello")
     //we can set the response
@@ -47,3 +51,13 @@ app.get('/', (req, res) => {
 
     //link the route with the router
     app.use('/users', userRouter);
+
+//example of middleware is a logger function
+//this will be printing out the url
+function logger(req, res, next) {
+    console.log(req.originalUrl)
+    //also if this logger is only defined for a certain function,
+    //it will first execute logger functionality then it will what the function says to do
+    //this happens because of the line below, the next() function
+    next()
+}
